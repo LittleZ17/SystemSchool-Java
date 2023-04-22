@@ -39,4 +39,13 @@ public class Teacher {
     public void setSalary(double salary) {
         this.salary = salary;
     }
+
+    @Override
+    public String toString() {
+        return "Teacher{" +
+                "teacherId='" + teacherId + '\'' +
+                ", name='" + name + '\'' +
+                ", salary=" + salary +
+                '}';
+    }
 }
