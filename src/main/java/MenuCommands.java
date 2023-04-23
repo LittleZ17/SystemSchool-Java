@@ -1,8 +1,10 @@
 import java.util.*;
 
 public class MenuCommands {
-    
-    public static void menuCommands() {
+    private String nameSchool;
+
+
+    public static void menuCommands(String nameSchool, Map<String, Teacher> teachersList, Map<String, Course> coursesList, Map<String, Student> studentsList) {
 
         Map<String, String> commandInfo = new LinkedHashMap<>();
 
@@ -28,36 +30,41 @@ public class MenuCommands {
         }
 
         while (!quit) {
-            System.out.print("Enter your command command: \n");
+            System.out.print("Enter your command:: \n");
             final Scanner INPUT = new Scanner(System.in);
             String command = INPUT.nextLine();
 
             switch (command.toUpperCase()) {
 
                 case "ENROLL":
-                    System.out.println("Hola Fercho!!!");
-                    //enrollStudent();
+                    //enroll(idStudent, idCourse);
                     break;
                 case "ASSIGN":
                     //assignTeacher();
                     break;
                 case "SHOW COURSES":
-                    //school.showCourses();
+                    showAllCourses(coursesList);
                     break;
                 case "LOOKUP COURSE":
-                    //lookupCourse();
+                    System.out.println("Introduce ID Course:");
+                    String idCourse = INPUT.nextLine();
+                    Course course = courseById(coursesList, idCourse);
                     break;
                 case "SHOW STUDENTS":
-                    //school.showStudents();
+                    showStudents(studentsList);
                     break;
                 case "LOOKUP STUDENT":
-                    //lookupStudent();
+                    System.out.println("Introduce ID Student:");
+                    String idStudent= INPUT.nextLine();
+                    Student student = studentById(studentsList, idStudent);
                     break;
                 case "SHOW TEACHERS":
-                    //school.showTeachers();
+                    showTeachers(teachersList);
                     break;
                 case "LOOKUP TEACHER":
-                    //lookupTeacher();
+                    System.out.println("Introduce ID Teacher:");
+                    String idTeacher = INPUT.nextLine();
+                    teacherById(teachersList, idTeacher);
                     break;
                 case "SHOW PROFIT":
                     //System.out.println("Profit: $" + /*school.calculateProfit()*/);
@@ -71,5 +78,77 @@ public class MenuCommands {
 
         }
     }
+
+    public static void showAllCourses(Map<String, Course> coursesList){
+        System.out.println(coursesList);
+    }
+    public static void showStudents(Map<String, Student> studentsList){
+        System.out.println(studentsList);
+    }
+    public static void showTeachers(Map<String, Teacher> teachersList){
+        System.out.println(teachersList);
+    }
+
+
+    public static Course courseById(Map<String, Course> coursesList, String idCourse){
+        return coursesList.get(idCourse);
+    }
+
+    public static Student studentById(Map<String, Student> studentsLists, String idStudent){
+        return studentsLists.get(idStudent);
+    }
+    public  static Teacher teacherById(Map<String, Teacher> teachersList, String idTeacher){
+        return teachersList.get(idTeacher);
+    }
+
+    public class EnrollmentSystem {
+        private List<Student> students;
+        private List<Course> courses;
+        // other properties and methods
+
+        public void enroll(String studentId, String courseId) {
+            Student student = findStudent(studentId);
+            Course course = findCourse(courseId);
+
+            if (student == null) {
+                System.out.println("Error: Student with ID " + studentId + " not found.");
+                return;
+            }
+
+            if (course == null) {
+                System.out.println("Error: Course with ID " + courseId + " not found.");
+                return;
+            }
+
+            if (course.getMoney_earned() + course.getPrice() > Double.MAX_VALUE) {
+                System.out.println("Error: Maximum value of money earned exceeded for course " + courseId + ".");
+                return;
+            }
+
+            student.addCourse(course);
+            course.updateMoneyEarned(course.getPrice());
+
+            System.out.println("Enrollment successful for student " + studentId + " in course " + courseId + ".");
+        }
+
+        private Student findStudent(String studentId) {
+            for (Student student : students) {
+                if (student.getStudentId().equals(studentId)) {
+                    return student;
+                }
+            }
+            return null;
+        }
+
+        private Course findCourse(String courseId) {
+            for (Course course : courses) {
+                if (course.getCourseId().equals(courseId)) {
+                    return course;
+                }
+            }
+            return null;
+        }
+
+
 
 }

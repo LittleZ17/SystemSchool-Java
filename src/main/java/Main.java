@@ -1,6 +1,9 @@
 public class Main {
     public static void main(String[] args) {
         //MenuCommands.menuCommands();
-        App.appStart();
+        App app = new App();
+        app.appStart();
+
+
     }
 }

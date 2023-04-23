@@ -1,9 +1,9 @@
-import java.util.HashMap;
-import java.util.InputMismatchException;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class App {
+
+    private Map[] data = new Map[3];
+
 
     public static void header(String msj){
         System.out.println(Color.YELLOW_BG + "");
@@ -24,7 +24,7 @@ public class App {
         //System.out.println(Color.RESET);
     }
 
-    public static void appStart(){
+    public void appStart(){
         header("WELCOME TO SYSTEM SCHOOL");
 
         final Scanner INPUT = new Scanner(System.in);
@@ -55,7 +55,8 @@ public class App {
 
             }
 
-        System.out.println(teachersList.keySet());
+
+        //System.out.println(teachersList.keySet());
 
         title("DATA COURSES FOR " + nameSchool);
 
@@ -77,7 +78,7 @@ public class App {
             Course courseInput = new Course(courseName, coursePrice);
             coursesList.put(courseInput.getCourseId(), courseInput);
         }
-        System.out.println(coursesList);
+        //System.out.println(coursesList);
 
 
         title("DATA STUDENTS FOR " + nameSchool);
@@ -90,7 +91,7 @@ public class App {
             final Scanner INPUT_FOR = new Scanner(System.in);
             subtitle("Student number: "+ (i + 1));
 
-            System.out.println("Student # "+ i + "Student's name");
+            System.out.println("Student's name");
             String studentName = INPUT_FOR.nextLine();
             System.out.println("Student's address:");
             String studentAddress = INPUT_FOR.nextLine();
@@ -101,8 +102,10 @@ public class App {
             Student studentInput = new Student(studentName, studentAddress, studentEmail);
             studentsList.put(studentInput.getStudentId(), studentInput);
         }
-        System.out.println(studentsList);
 
-
+        this.data = new Map[]{teachersList, coursesList, studentsList};
+        MenuCommands.menuCommands(nameSchool, teachersList, coursesList, studentsList);
+        //return data;
     }
+
 }

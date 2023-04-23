@@ -27,7 +27,8 @@ public enum Color {
 
     //ICON
 
-    CHECK("\u001B[32m" + "\u2714" + " Check" + "\u001B[0m");
+    CHECK("\u001B[32m" + "\u2714" + " Check" + "\u001B[0m"),
+    SAVEDATA("\u001B[32m" + "\u2714" + " SAVED " + "\u001B[32m" + "\u2714" + "\u001B[0m");
 
     private final String code;
 

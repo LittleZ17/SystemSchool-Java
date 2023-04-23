@@ -61,12 +61,27 @@ public class Course {
 
     @Override
     public String toString() {
-        return "Course{" +
-                "courseId='" + courseId + '\'' +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                ", money_earned=" + money_earned +
-                ", teacher=" + teacher +
-                '}';
+        String courseIdLine = "Course ID: " + courseId + "\n";
+        String nameLine = "Name: " + name + "\n";
+        String priceLine = "Price: " + String.format("$%.2f", price) + "\n";
+        String moneyEarnedLine = "Money Earned: " + String.format("$%.2f", money_earned) + "\n";
+        String teacherLine = "Teacher: " +(teacher != null ? getTeacher(): "N/A sin asignar") + "\n";
+        String separatorLine = "---------------------------\n";
+
+        String output = Color.PURPLE_BG + "COURSE\n" + Color.RESET;
+        output += separatorLine + courseIdLine + nameLine + priceLine + moneyEarnedLine + teacherLine + separatorLine;
+
+        return Color.BOLD + Color.PURPLE_BG.toString() + "COURSE\n" + Color.RESET +
+                separatorLine +
+                courseIdLine +
+                nameLine +
+                priceLine +
+                moneyEarnedLine +
+                teacherLine +
+                separatorLine;
+    }
+
+    public void updateMoneyEarned(double price) {
+        setMoney_earned(money_earned += price);
     }
 }

@@ -42,10 +42,17 @@ public class Teacher {
 
     @Override
     public String toString() {
-        return "Teacher{" +
-                "teacherId='" + teacherId + '\'' +
-                ", name='" + name + '\'' +
-                ", salary=" + salary +
-                '}';
+        String teacherIdLine = "Teacher ID: " + teacherId + "\n";
+        String nameLine = "Name: " + name + "\n";
+        String salaryLine = "Salary: " + String.format("$%.2f", salary) + "\n";
+        String separatorLine = "---------------------------\n";
+
+
+        return Color.BOLD + Color.BLUE_BG.toString() + "TEACHER INFO:\n" + Color.RESET +
+                separatorLine +
+                teacherIdLine +
+                nameLine +
+                salaryLine +
+                separatorLine;
     }
 }

@@ -61,12 +61,24 @@ public class Student {
 
     @Override
     public String toString() {
-        return "Student{" +
-                "studentId='" + studentId + '\'' +
-                ", name='" + name + '\'' +
-                ", address='" + address + '\'' +
-                ", email='" + email + '\'' +
-                ", course=" + course +
-                '}';
+        String studentIdLine = "Student ID: " + studentId + "\n";
+        String nameLine = "Name: " + name + "\n";
+        String addressLine = "Address: " + address + "\n";
+        String emailLine = "Email: " + email + "\n";
+        String courseLine = "Course: " + (course != null ? course.getName() : "N/A") + "\n";
+        String separatorLine = "---------------------------\n";
+
+        return Color.BOLD + Color.GREEN_BG.toString() + "STUDENT INFO:\n" + Color.RESET +
+                separatorLine +
+                studentIdLine +
+                nameLine +
+                addressLine +
+                emailLine +
+                courseLine +
+                separatorLine;
+    }
+
+    public void addCourse(Course course) {
+        setCourse(course);
     }
 }
